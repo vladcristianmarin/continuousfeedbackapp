@@ -40,17 +40,6 @@ const Professor = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				isStrongPassword(value) {
-					if (
-						validator.contains(value, 'parola', {
-							ignoreCase: true,
-						}) ||
-						validator.contains(value, 'password', {
-							ignoreCase: true,
-						})
-					)
-						throw new Error('Password can\'t be "password"');
-				},
 				async set(value) {
 					return this.setDataValue('password', await bcrypt.hash(value, 8));
 				},
