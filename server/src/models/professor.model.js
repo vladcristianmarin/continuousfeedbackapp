@@ -39,10 +39,8 @@ const Professor = sequelize.define(
 		password: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			validate: {
-				async set(value) {
-					return this.setDataValue('password', await bcrypt.hash(value, 8));
-				},
+			async set(value) {
+				return this.setDataValue('password', await bcrypt.hash(value, 8));
 			},
 		},
 	},
