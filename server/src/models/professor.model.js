@@ -41,8 +41,6 @@ const Professor = sequelize.define(
 			allowNull: false,
 			validate: {
 				isStrongPassword(value) {
-					if (!validator.isStrongPassword(value))
-						throw new Error('Password too weak!');
 					if (
 						validator.contains(value, 'parola', {
 							ignoreCase: true,
