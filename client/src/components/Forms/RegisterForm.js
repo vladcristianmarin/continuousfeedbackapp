@@ -42,6 +42,8 @@ const RegisterForm = () => {
 		formIsValid = true;
 	}
 
+	console.log(passValue, passIsValid);
+
 	const { isLoading, error, sendRequest } = useHttp();
 	const authContext = useContext(AuthContext);
 
