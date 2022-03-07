@@ -9,6 +9,8 @@ import { useState, useEffect, useContext } from 'react';
 import AuthContext from '../store/auth-context';
 import ActivityLink from './ActivityLink';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const ActivityItem = (props) => {
 	const [feedbacks, setFeedbacks] = useState([]);
 	const [isActivityForm, setIsActivityForm] = useState(false);
@@ -24,7 +26,7 @@ const ActivityItem = (props) => {
 	useEffect(() => {
 		sendRequest(
 			{
-				url: `http://127.0.0.1:3000/activity/${props.activity.id}/feedbacks`,
+				url: `${SERVER}/activity/${props.activity.id}/feedbacks`,
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,
 				},
@@ -36,7 +38,7 @@ const ActivityItem = (props) => {
 	const deleteActivityHandler = () => {
 		sendRequest(
 			{
-				url: `http://127.0.0.1:3000/activity/${props.activity.id}`,
+				url: `${SERVER}/activity/${props.activity.id}`,
 				method: 'DELETE',
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,

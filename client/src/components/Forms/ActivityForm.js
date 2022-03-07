@@ -8,6 +8,8 @@ import styles from './Form.module.css';
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const ActivityFrom = (props) => {
 	const {
 		value: nameValue,
@@ -55,9 +57,8 @@ const ActivityFrom = (props) => {
 		sendRequest(
 			{
 				url:
-					(props.type === 'add' && 'http://127.0.0.1:3000/activity') ||
-					(props.type === 'edit' &&
-						`http://127.0.0.1:3000/activity/${props.activity.id}`),
+					(props.type === 'add' && `${SERVER}/activity`) ||
+					(props.type === 'edit' && `${SERVER}/activity/${props.activity.id}`),
 				method:
 					(props.type === 'add' && 'POST') ||
 					(props.type === 'edit' && 'PATCH'),

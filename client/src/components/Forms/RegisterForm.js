@@ -5,7 +5,9 @@ import useInput from '../../hooks/use-input';
 import AuthContext from '../../store/auth-context';
 import Button from '../UI/Button';
 import styles from './Form.module.css';
-import { isEmail, isValidPassForRegister } from './validators';
+import { isEmail } from './validators';
+
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
 
 const RegisterForm = () => {
 	const {
@@ -33,7 +35,7 @@ const RegisterForm = () => {
 		valueChangeHandler: passChangeHandler,
 		inputBlurHandler: passBlurHandler,
 		reset: resetPass,
-	} = useInput(isValidPassForRegister);
+	} = useInput((val) => true);
 
 	let formIsValid = false;
 	if (emailIsValid && passIsValid && nameIsValid) {
@@ -46,7 +48,7 @@ const RegisterForm = () => {
 	const registerProf = async ({ name, email, password }) => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/register',
+				url: `${SERVER}/register`,
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',

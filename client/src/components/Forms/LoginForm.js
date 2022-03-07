@@ -8,6 +8,8 @@ import AuthContext from '../../store/auth-context';
 import { useContext } from 'react';
 import { isEmail, isValidPassForLogin } from './validators';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const LoginForm = () => {
 	const {
 		value: emailValue,
@@ -25,7 +27,7 @@ const LoginForm = () => {
 		valueChangeHandler: passChangeHandler,
 		inputBlurHandler: passBlurHandler,
 		reset: resetPass,
-	} = useInput(isValidPassForLogin);
+	} = useInput((val) => true);
 
 	const { isLoading, error, sendRequest } = useHttp();
 	const authCtx = useContext(AuthContext);
@@ -33,7 +35,7 @@ const LoginForm = () => {
 	const loginHandler = async ({ email, password }) => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/login',
+				url: `${SERVER}/login`,
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',

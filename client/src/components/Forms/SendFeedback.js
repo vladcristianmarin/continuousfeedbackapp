@@ -7,6 +7,9 @@ import Modal from '../UI/Modal';
 import styles from './Form.module.css';
 import classes from './SendFeedback.module.css';
 import { AiOutlineClose } from 'react-icons/ai';
+
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const SendFeedback = (props) => {
 	const [hasSentCode, setHasSentCode] = useState(false);
 	const [codeInvalid, setCodeInvalid] = useState(false);
@@ -32,7 +35,7 @@ const SendFeedback = (props) => {
 	const checkActivity = (code) => {
 		sendRequest(
 			{
-				url: `http://127.0.0.1:3000/activity/${code}`,
+				url: `${SERVER}/activity/${code}`,
 				headers: {
 					Accept: 'application/json',
 					'Content-type': 'application/json',
@@ -47,7 +50,7 @@ const SendFeedback = (props) => {
 	const sendFeedbackHandler = (feedback) => {
 		sendRequest(
 			{
-				url: `http://127.0.0.1:3000/activity/${codeValue}/${feedback}`,
+				url: `${SERVER}/activity/${codeValue}/${feedback}`,
 				method: 'POST',
 			},
 			(data) => {

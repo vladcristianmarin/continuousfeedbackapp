@@ -8,6 +8,8 @@ import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { isEmail } from './validators';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const EditProfile = (props) => {
 	const authContext = useContext(AuthContext);
 	const {
@@ -44,7 +46,7 @@ const EditProfile = (props) => {
 	const editProfileHandler = (body) => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/me',
+				url: `${SERVER}/me`,
 				method: 'PATCH',
 				headers: {
 					Authorization: `Bearer ${authContext.token}`,

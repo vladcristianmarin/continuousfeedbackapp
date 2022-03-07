@@ -13,6 +13,8 @@ import ActivityFrom from './Forms/ActivityForm';
 import EditProfile from './Forms/EditProfile';
 import { useHistory } from 'react-router-dom';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const Profile = () => {
 	const authContext = useContext(AuthContext);
 	const [name, setName] = useState('');
@@ -36,7 +38,7 @@ const Profile = () => {
 	const refreshHandler = () => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/activities',
+				url: `${SERVER}/activities`,
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,
 				},
@@ -51,7 +53,7 @@ const Profile = () => {
 	useEffect(() => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/activities',
+				url: `${SERVER}/activities`,
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,
 				},
@@ -65,7 +67,7 @@ const Profile = () => {
 	const logoutAllHandler = () => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/logoutAll',
+				url: `${SERVER}/logoutAll`,
 				method: 'POST',
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,
@@ -81,7 +83,7 @@ const Profile = () => {
 	const deleteAccountHandler = () => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/me',
+				url: `${SERVER}/me`,
 				method: 'DELETE',
 				headers: {
 					Authorization: 'Bearer ' + authContext.token,

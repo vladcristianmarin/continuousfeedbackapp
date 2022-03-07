@@ -5,6 +5,8 @@ import AuthContext from '../../store/auth-context';
 import classes from './MainNavigation.module.css';
 import useHttp from '../../hooks/use-http';
 
+const SERVER = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
 const MainNavigation = () => {
 	const authCtx = useContext(AuthContext);
 	const isLoggedIn = authCtx.isLoggedIn;
@@ -14,7 +16,7 @@ const MainNavigation = () => {
 	const logoutHandler = () => {
 		sendRequest(
 			{
-				url: 'http://127.0.0.1:3000/logout',
+				url: `${SERVER}/logout`,
 				method: 'POST',
 				headers: {
 					Authorization: 'Bearer ' + authCtx.token,
