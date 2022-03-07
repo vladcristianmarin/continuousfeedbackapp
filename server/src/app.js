@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const profRouter = require('./routers/professor.router');
 const activityRouter = require('./routers/activity.router');
 const { sequelize, init, associate } = require('./db/sequelize');
